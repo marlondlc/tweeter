@@ -18,8 +18,50 @@ body {
   margin: 0;
   color: #244751;
   background-color: #eee;
+  font-family: 'Roboto Condensed', sans-serif;      /*<!-- w3d1 Task 2 -->*/
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+.container {
+width: 540px;
+align-content: center;
+background-color: white;
+margin: 80px auto;
+padding: 25px;
+border: 2px solid rebeccapurple
+}
+
+.new-tweet {
+  border-radius: 1em;
+  background: #eee;
+  /*margin: 2em;*/
+  border: 2px dashed aquamarine;
+  padding: 10px;
+}
+
+.textbox {
+  margin: auto;
+  width: 460px;
+  height: 96px;
+  padding: 5px
+}
+
+.counter {
+  margin-top: 10px;
+}
+
+.tweetbutton {
+  margin-top: 5px
+}
+
+.new-tweet h2 {
+  border-bottom: 1px solid black;
+  margin-top: 3px;
+}
+
+.formflex{
+  display: flex;
+  justify-content: space-between;
+}
