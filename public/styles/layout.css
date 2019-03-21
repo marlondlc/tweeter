@@ -30,15 +30,15 @@ align-content: center;
 background-color: white;
 margin: 80px auto;
 padding: 25px;
-border: 2px solid rebeccapurple
+/* border: 2px solid rebeccapurple */
 }
 
 .new-tweet {
   border-radius: 1em;
   background: #eee;
   /*margin: 2em;*/
-  border: 2px dashed aquamarine;
-  padding: 10px;
+  /* border: 2px dashed aquamarine;*/
+  padding: 16px;
 }
 
 .textbox {
@@ -65,3 +65,4 @@ border: 2px solid rebeccapurple
   display: flex;
   justify-content: space-between;
 }
+

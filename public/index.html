@@ -12,10 +12,11 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet-format.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
-
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script> <!-- this links the counter file-->
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
@@ -26,7 +27,6 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png" width="80px" height="80px">
       <span class="header">Tweeter</span>
-
     </nav>
 
     <!-- Page-specific (main) content here -->
@@ -41,11 +41,32 @@
             </div>
           </form>
       </section>
-      <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod cum saepe repudiandae magni aspernatur sapiente assumenda, deleniti autem eum quaerat in at, atque ab commodi perspiciatis explicabo rem. Libero, quia.</P>
-    <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod cum saepe repudiandae magni aspernatur sapiente assumenda, deleniti autem eum quaerat in at, atque ab commodi perspiciatis explicabo rem. Libero, quia.</P>
-    <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod cum saepe repudiandae magni aspernatur sapiente assumenda, deleniti autem eum quaerat in at, atque ab commodi perspiciatis explicabo rem. Libero, quia.</P>
-    <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod cum saepe repudiandae magni aspernatur sapiente assumenda, deleniti autem eum quaerat in at, atque ab commodi perspiciatis explicabo rem. Libero, quia.</P>
-    </main>
+      <!-- the above section "new-tweet" is the main textarea where user submits input -->
+      <section id="tweet-container">
+          <article class="article-box">
+             <header class="userHeader">
+                <div class="img-user">
+                  <img class="tweetLogo" src="/images/icon.png" alt="gamerController" width="60px" height="60px">
+                  <h1 class=user-name>Bill Field</h1>
+                </div>
+                <h3 class= "userId">@user</h3>
+             </header>
+              <div class= "textAndPostDate">
+                <p class="post-tweet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores possimus cum temporibus ab ipsa, eligendi harum, eaque sapiente autem magnam ipsum suscipit, atque odio maxime repudiandae explicabo culpa! Qui, veniam?</p>
+                <footer class="time-stamp">
+                  <div>10 Days ago</div>
+                  <div>
+                      <img class="bottomIcons" src="/images/icon.png" alt="gamerController" width="15px" height="15px">
+                      <img class="bottomIcons" src="/images/icon.png" alt="gamerController" width="15px" height="15px">
+                      <img class="bottomIcons" src="/images/icon.png" alt="gamerController" width="15px" height="15px">
+                  </div>
+                </footer>
+              </div>
+            </article>
+        </section>
+        <!-- the above section "newest-tweet" is the layout of how the tweet will look-->
+
+  </main>
 
   </body>
 </html>
