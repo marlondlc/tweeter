@@ -33,7 +33,7 @@
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
-          <form action="/tweets" method="POST">
+          <form> <!-- we should remove the action and post because we want no page reload-->
             <textarea class="textbox" name="text" placeholder="What are you humming about?"></textarea>
             <div class="formflex">
               <input class="tweetbutton" type="submit" value="Tweet">

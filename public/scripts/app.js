@@ -1,3 +1,5 @@
+//import { callbackify } from "util";
+
 /*
  * Client-side JS logic goes here
  * jQuery is already loaded
@@ -51,91 +53,82 @@ const data = [
   }
 ];
 
+$(function () {                                             // this can be written like this "$(document).ready(){}"
 
-$(function () {        // this can be written like this "$(document).ready(){}"
-
+  //Week 3 Day 2 -     Creating the Tweets[0][1] etc:
   function renderTweets(tweets) {
-    // calls createTweetElement for each tweet
-    tweets.forEach(tweet => {
-
-      createTweetElement(tweet.val());  // takes return value and appends it to the tweets container
-      $('#tweet-container').append(tweet);
+    tweets.forEach(tweet => {                               // calls createTweetElement for each tweet
+      createTweetElement(tweet);
+      $('#tweet-container').append(tweet);                  // takes return value and appends it to the tweets container
     });
   }
+  renderTweets(data)                                        // pushes the Data structure into renderTweets() and singling them out.
 
-  renderTweets(data)
-
-
-  function createTweetElement(tweet) {
-    var $tweet = createTweetElement(data);
-    let container = $("#tweet-container")
-
-    let bossTweet = $("<article />");  // 1-tweet content pass it to a "new/created" article than place it in sectio
+  //Week 3 Day 2 - Dynamic Tweets Assignment:
+  function createTweetElement(tweet) {                      //this "f()" will give you the structure on how you want your data to display
+    //var $tweet = createTweetElement(data);
+    let container = $("#tweet-container");
+    console.log(tweet)
+    let bossTweet = $("<article />");
     let header = $("<header>").addClass("userHeader")
     let avatarDiv = $('<div>').addClass("img-user")
     let image = $("<img>").addClass("tweetLogo").attr("src", tweet.user.avatars.small)
     let userName = $("<h1>").addClass("user-name").text(tweet.user.name)
-
-    avatarDiv.append(image).append(userName)
-
     let userId = $("<h3>").addClass("userId").text(tweet.user.handle)
-
-    header.append(avatarDiv).append(userId)
-
     let textAndPostDate = $("<div>").addClass("textAndPostDate")
-
     let textPost = $("<p>").addClass("post-tweet").text(tweet.content.text)
-
     let footer = $("<footer>").addClass("time-stamp")
     let timeStamp = $("<div>").text(tweet.created_at)
-
     let iconContainer = $("<div>")
     let retweet = $("<img>").addClass("bottomIcons")
     let flag = $("<img>").addClass("bottomIcons")
     let like = $("<img>").addClass("bottomIcons")
 
+
+    avatarDiv.append(image).append(userName)
+    header.append(avatarDiv).append(userId)
+
     iconContainer.append(retweet).append(flag).append(like)
     footer.append(timeStamp).append(iconContainer)
     textAndPostDate.append(textPost).append(footer)
 
-
     bossTweet.append(header).append(textAndPostDate)
-    //this function within your loop
-
 
     container.append(bossTweet);
+    //return $tweet;                                            // no need to return this function is running its course of adding a new structure for tweet
 
-    return $(tweets)
   }
 
-
-  $("form").on("submit", function (event) {               // 2-once the button ("tweet") is submitted run function in code
+  //Week 3 Day 3 - Form Submission using JQuery Assignment:
+  $("form").on("submit", function (event) {                   //in this case"form" is fine but in the future use a "class"/"ID"
     event.preventDefault();
+    console.log('Button clicked, performing ajax call...');
 
-    const input = $("textarea")
-    if (input.val()) {                                    // 3- ".val()" returns a value
-      createTweetElement(input.val());                    // call the f() with the value "textarea"
-      input.val("")                                      // after this is done empty the "textArea" with .val(" ") (space between the " ")
-    }
+    const requestOptions = {
+      method: "POST",
+      url: "/tweets",
+      dataType: "json",
+      data: $(this).serialize()
+    };
 
-    //console.log(tweet);                                    // to see what it looks like
-    $('.container').append(tweet);                         // push the new tweet structure inside the body container
+
+    $.ajax(requestOptions)                                      // varaialbe  above needs to be pushed inside ( )
+      .done(response => { console.log(response); })
+      .fail(err => { `Error: ${err}` })                         // Any error with the request
+      .always(() => { console.log('Request completed'); });     // This will get executed in any case
+
+
+    // const input = $(".textbox")                                 //in this case"textarea" is fine but in the future use a "class"/"ID"
+    //console.log(input.val())
+    // if (input.val()) {                                          // ".val()" returns a value
+    //   createTweetElement(input.val());                          // call the f() with the value "textarea"
+    //   input.val("")                                             // after this is done empty the "textArea" with .val(" ") (space between the " ")
+    // }
+
+
+    // //console.log(tweet);                                       // to see what it looks like
+    // $('.container').prepend(tweet);                             // push the new tweet structure inside the body container "prepend" instead of "append" because pre comes before so on top of the rest
   })
 
+
 })
-
-
-// let $tweet = $("<article>").addClass(".user-tweet");
-// let header = $("<header>");
-// let h1 = $("<h1>").text(json.user.name);
-// let h2 = $("<h2>").attr("src", json.user.avatars.regular);
-// let h3 = $("<h3>").text(json.user.handle);
-// let p = $("<p>").text(json.content.text);
-// let footer = $("<footer>").text(json.created_at);
-
-// $("h1").appendTo("header");
-// $("h2").appendTo("header"); //not sure if append or appendTO
-// $("h3").appendTo("header");
-// $("$tweet").append("header");
-// $("$tweet").append("p");
-// $("$tweet").append("footer");

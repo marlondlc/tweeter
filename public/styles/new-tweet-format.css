@@ -3,21 +3,21 @@ margin: 1px 2px 5px 1px
 
 }
 
-#tweet-container :hover {
+#tweet-container article:hover {
   opacity: 1.0;
 
 }
 
 #tweet-container {
-  opacity: .5;
   display: flex;
   margin: 29px 0px;
   flex-direction: column;
 }
 
 #tweet-container article {
+  opacity: .5;
   border-radius: 1em;
-  margin: 15px auto;
+  margin: 14px 5px 10px 5px;
   background-color: white;
   border: 1px solid grey;
   padding: 16px 0px 0px 0px;
@@ -29,15 +29,14 @@ margin: 1px 2px 5px 1px
   justify-content: space-between;
   display: flex;
   flex-direction: row;
-  margin: -19px -3px -19px -2px;
+  margin: -19px -1px -19px -1px;
   background-color: #eee;
   border-radius: 1em 1em 0em 0em;
 
 }
 
 .bottomIcons {
-  margin: 16px;
-  align-content: right;
+  margin: 10px;
 }
 .img-user {
   display: flex;
@@ -58,4 +57,8 @@ margin: 1px 2px 5px 1px
   display: flex;
   border-top: 1px solid grey;
   padding: 5px 10px 0px;
+}
+
+.tweetLogo{
+  margin: 10px 7px 0px 10px;
 }
