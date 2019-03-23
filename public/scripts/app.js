@@ -40,13 +40,13 @@ function createTweetElement(tweet) {                          //this "f()" will 
   let textAndPostDate = $("<div>").addClass("textAndPostDate")
   let textPost = $("<p>").addClass("post-tweet").text(tweet.content.text)
   let footer = $("<footer>").addClass("time-stamp")
-
-  let timeStamp = $("<div>").text(moment().endOf().fromNow())      //.TEXT((MOEMENT(...........call moment here TO DO!!!
+  let timeStamp = $("<div>").text(moment(tweet.created_at).startOf().fromNow())                     //.text(you are  grabbing the data when it was created from server/routes/tweets "data"  using .from() will calculate from when -- linked in my index.html script!)
+  //text(moment().startOf(tweet.created_at).fromNow())
   let iconContainer = $("<div>")
   let retweet = $("<img>").addClass("bottomIcons")
   let flag = $("<img>").addClass("bottomIcons")
   let like = $("<img>").addClass("bottomIcons")
-
+  db.test.find()
 
   avatarDiv.append(image).append(userName)
   header.append(avatarDiv).append(userId)
@@ -70,6 +70,7 @@ function renderTweets(tweets) {
   tweets.forEach(tweet => {                                     // calls createTweetElement for each tweet
     let strucTweet = createTweetElement(tweet);
     $('#tweet-container').prepend(strucTweet);                  // takes return value and appends it to the tweets container
+
   });
 
 }
@@ -110,7 +111,7 @@ function addFormEventHandler() {
       })
 
     } else {
-      console.log($(this).serialize())
+
       const requestOptions = {                        //Creating the app.post route
         method: "POST",
         url: "/tweets",
@@ -123,6 +124,7 @@ function addFormEventHandler() {
         loadTweets()
         $(".textbox").val("")                                                // this will empty the textbox after submitting it
         $(".counter").text("140")                                           // this will reset the counter back to the amount you give it ".text()"
+
       });
     }
   })
