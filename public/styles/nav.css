@@ -24,3 +24,20 @@
 
 }
 
+#nav-bar .compose:hover {
+  opacity: 1.0;
+  color: #00a087;
+  border: 1px solid black;
+}
+
+#nav-bar .compose {
+  float: right;
+  padding: 1em;
+  background-color: azure;
+  opacity: .5;
+  margin-top: 8px;
+  border-radius: 1em;
+  border: 1px solid;
+  font-weight: 600;
+}
+

@@ -5,130 +5,160 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-];
-
-$(function () {                                             // this can be written like this "$(document).ready(){}"
-
-  //Week 3 Day 2 -     Creating the Tweets[0][1] etc:
-  function renderTweets(tweets) {
-    tweets.forEach(tweet => {                               // calls createTweetElement for each tweet
-      createTweetElement(tweet);
-      $('#tweet-container').append(tweet);                  // takes return value and appends it to the tweets container
-    });
-  }
-  renderTweets(data)                                        // pushes the Data structure into renderTweets() and singling them out.
-
-  //Week 3 Day 2 - Dynamic Tweets Assignment:
-  function createTweetElement(tweet) {                      //this "f()" will give you the structure on how you want your data to display
-    //var $tweet = createTweetElement(data);
-    let container = $("#tweet-container");
-    console.log(tweet)
-    let bossTweet = $("<article />");
-    let header = $("<header>").addClass("userHeader")
-    let avatarDiv = $('<div>').addClass("img-user")
-    let image = $("<img>").addClass("tweetLogo").attr("src", tweet.user.avatars.small)
-    let userName = $("<h1>").addClass("user-name").text(tweet.user.name)
-    let userId = $("<h3>").addClass("userId").text(tweet.user.handle)
-    let textAndPostDate = $("<div>").addClass("textAndPostDate")
-    let textPost = $("<p>").addClass("post-tweet").text(tweet.content.text)
-    let footer = $("<footer>").addClass("time-stamp")
-    let timeStamp = $("<div>").text(tweet.created_at)
-    let iconContainer = $("<div>")
-    let retweet = $("<img>").addClass("bottomIcons")
-    let flag = $("<img>").addClass("bottomIcons")
-    let like = $("<img>").addClass("bottomIcons")
 
 
-    avatarDiv.append(image).append(userName)
-    header.append(avatarDiv).append(userId)
-
-    iconContainer.append(retweet).append(flag).append(like)
-    footer.append(timeStamp).append(iconContainer)
-    textAndPostDate.append(textPost).append(footer)
-
-    bossTweet.append(header).append(textAndPostDate)
-
-    container.append(bossTweet);
-    //return $tweet;                                            // no need to return this function is running its course of adding a new structure for tweet
-
-  }
-
-  //Week 3 Day 3 - Form Submission using JQuery Assignment:
-  $("form").on("submit", function (event) {                   //in this case"form" is fine but in the future use a "class"/"ID"
-    event.preventDefault();
-    console.log('Button clicked, performing ajax call...');
-
-    const requestOptions = {
-      method: "POST",
-      url: "/tweets",
-      dataType: "json",
-      data: $(this).serialize()
-    };
 
 
-    $.ajax(requestOptions)                                      // varaialbe  above needs to be pushed inside ( )
-      .done(response => { console.log(response); })
-      .fail(err => { `Error: ${err}` })                         // Any error with the request
-      .always(() => { console.log('Request completed'); });     // This will get executed in any case
+const request = (options, cb) => {
+
+  $.ajax(options)
+
+    .done(response => {
+      cb(response);
+    })
+
+    .fail(err => {
+      console.log(`Error: ${err}`)
+    })
+
+  // .always(() => {                                        // in this project there is no propose of the ".always"
+  //   console.log("Request complete")
+  // });
+};
 
 
-    // const input = $(".textbox")                                 //in this case"textarea" is fine but in the future use a "class"/"ID"
-    //console.log(input.val())
-    // if (input.val()) {                                          // ".val()" returns a value
-    //   createTweetElement(input.val());                          // call the f() with the value "textarea"
-    //   input.val("")                                             // after this is done empty the "textArea" with .val(" ") (space between the " ")
-    // }
+function createTweetElement(tweet) {                          //this "f()" will give you the structure on how you want your data to be display
+
+  let container = $("#tweet-container");
+
+  let bossTweet = $("<article />");
+  let header = $("<header>").addClass("userHeader")
+  let avatarDiv = $('<div>').addClass("img-user")
+  let image = $("<img>").addClass("tweet-logo").attr("src", tweet.user.avatars.small)
+  let userName = $("<h1>").addClass("user-name").text(tweet.user.name)
+  let userId = $("<h3>").addClass("userId").text(tweet.user.handle)
+  let textAndPostDate = $("<div>").addClass("textAndPostDate")
+  let textPost = $("<p>").addClass("post-tweet").text(tweet.content.text)
+  let footer = $("<footer>").addClass("time-stamp")
+
+  let timeStamp = $("<div>").text(tweet.created_at)//.TEXT((MOEMENT(...........call moment here TO DO!!!
+  let iconContainer = $("<div>")
+  let retweet = $("<img>").addClass("bottomIcons")
+  let flag = $("<img>").addClass("bottomIcons")
+  let like = $("<img>").addClass("bottomIcons")
 
 
-    // //console.log(tweet);                                       // to see what it looks like
-    // $('.container').prepend(tweet);                             // push the new tweet structure inside the body container "prepend" instead of "append" because pre comes before so on top of the rest
+  avatarDiv.append(image).append(userName)
+  header.append(avatarDiv).append(userId)
+
+  iconContainer.append(retweet).append(flag).append(like)
+  footer.append(timeStamp).append(iconContainer)
+  textAndPostDate.append(textPost).append(footer)
+
+  bossTweet.append(header).append(textAndPostDate)
+
+
+  return bossTweet
+
+}
+
+
+
+function renderTweets(tweets) {
+  $('#tweet-container').empty()
+
+  tweets.forEach(tweet => {                                     // calls createTweetElement for each tweet
+    let strucTweet = createTweetElement(tweet);
+    $('#tweet-container').prepend(strucTweet);                  // takes return value and appends it to the tweets container
+  });
+
+}
+
+
+function loadTweets() {
+
+  $.ajax({
+    method: "GET",
+    url: "/tweets"
+  }).done(function (response) {
+    renderTweets(response)
   })
+
+}
+
+function addFormEventHandler() {
+  $("form").on("submit", function (event) {                    //in this case"form" is fine but in the future use a "class"/"ID"
+    event.preventDefault();
+
+
+    let tweetLength = $(".textbox").val().trim().length         // the value of the "textbox" length minus the "spaces before and after"(.trim()
+
+    if (tweetLength > 140) {
+      //$(".error-message").addClass("error-message-display").text("testinggggg") --VIRGILS WAY
+
+      $(".error-message").slideDown(200, () => {
+
+
+      })   //200, () => {
+      //   setTimeout(20000, () => {
+      //     $(".error-message").slideUp(50)
+      //   })
+      // })
+
+
+    } else if (tweetLength === 0) {
+      alert("fill in ")
+
+    } else {
+      console.log($(this).serialize())
+      const requestOptions = {                        //Creating the app.post route
+        method: "POST",
+        url: "/tweets",
+        data: $(this).serialize()                     // returns a query "string" // "[name of the input]=[text that was submitted]"
+      };
+      //$(".error-message-display").removeClass("error-message-display").text("") --VIRGILS WAY
+
+      request(requestOptions, function () {
+
+        loadTweets()
+        $(".textbox").val("")                                                // this will empty the textbox after submitting it
+        $(".counter").text("140")                                           // this will reset the counter back to the amount you give it ".text()"
+      });
+    }
+  })
+}
+
+function createComposeEventHandler() {                // naming:  verb followed by some information "create"verb what are  you creating "ComposeEventHandler"
+  $(".compose").click(function (event) {              //("compose").click(function(event))
+    event.preventDefault();                           //prevent it from being redirected
+    $(".new-tweet").slideToggle(800);                 //.slideToggle( [duration ] [, complete ] ) //the parameters are optional
+    $(".textbox").select();                           //once the above is completed set the mouse to the textarea "textbox"
+  })
+
+}
+
+// function maxLengthSlideUpDown() {
+
+//   $( ".error-message" ).click(function() {
+//     $( "#book" ).slideDown( "slow", function() {
+//       // Animation complete.
+//     });
+//   });
+
+// }
+
+
+//summary of whats going on in the "DOM"
+$(function () {                                       // this can be written like this "$(document).ready(){}""
+  loadTweets()                                        //load existing data tweets without the new
+  addFormEventHandler()
+  createComposeEventHandler()
+
 
 
 })
+
+
+
+//LOOK OVER THEN DELETE
+      // $(".error-message").slideUp(50) - use the CB riki suggested (settimeout - look it up)

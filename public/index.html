@@ -17,6 +17,8 @@
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script> <!-- this links the counter file-->
+    <!-- include moment js (ETA) HERE!  above app.js-->
+
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
@@ -27,6 +29,7 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png" width="80px" height="80px">
       <span class="header">Tweeter</span>
+      <input class="compose" type="submit" value= "compose">
     </nav>
 
     <!-- Page-specific (main) content here -->
@@ -39,6 +42,7 @@
               <input class="tweetbutton" type="submit" value="Tweet">
               <span class="counter">140</span>
             </div>
+            <div class="error-message">Error: You are over the max length of 140</div>
           </form>
       </section>
       <!-- the above section "new-tweet" is the main textarea where user submits input -->
@@ -46,7 +50,7 @@
           <article class="article-box">
              <header class="userHeader">
                 <div class="img-user">
-                  <img class="tweetLogo" src="/images/icon.png" alt="gamerController" width="60px" height="60px">
+                  <img class="tweet-logo" src="/images/icon.png" alt="gamerController" width="60px" height="60px">
                   <h1 class=user-name>Bill Field</h1>
                 </div>
                 <h3 class= "userId">@user</h3>
