@@ -41,7 +41,7 @@ function createTweetElement(tweet) {                          //this "f()" will 
   let textPost = $("<p>").addClass("post-tweet").text(tweet.content.text)
   let footer = $("<footer>").addClass("time-stamp")
 
-  let timeStamp = $("<div>").text(tweet.created_at)//.TEXT((MOEMENT(...........call moment here TO DO!!!
+  let timeStamp = $("<div>").text(moment().endOf().fromNow())      //.TEXT((MOEMENT(...........call moment here TO DO!!!
   let iconContainer = $("<div>")
   let retweet = $("<img>").addClass("bottomIcons")
   let flag = $("<img>").addClass("bottomIcons")
@@ -105,7 +105,7 @@ function addFormEventHandler() {
       //alert("fill in ")
       $(".please-fill-in").slideDown(200, () => {      // calling my ".please-fill-in" asking it to slide down -- 200 is the speed
         setTimeout(function () {                       // giving it another function "setTimeOut" which is a CB of the above line
-          $(".please-fill-in").slideUp(200)            //giving it another JQuery $(".please-fill-in") slideUp () eventhandler to slideup the "text  msg i gave it" 200 is the time it take to open
+          $(".please-fill-in").slideUp(200)            //giving it another JQuery $(".please-fill-in") slideUp () eventhandler to slideup the "text msg i gave it" 200 is the time it take to open
         }, 1500)                                       // the amount of time i want my error msg to display for
       })
 
