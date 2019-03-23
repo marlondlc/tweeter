@@ -94,20 +94,20 @@ function addFormEventHandler() {
     let tweetLength = $(".textbox").val().trim().length         // the value of the "textbox" length minus the "spaces before and after"(.trim()
 
     if (tweetLength > 140) {
-      //$(".error-message").addClass("error-message-display").text("testinggggg") --VIRGILS WAY
 
-      $(".error-message").slideDown(200, () => {
-
-
-      })   //200, () => {
-      //   setTimeout(20000, () => {
-      //     $(".error-message").slideUp(50)
-      //   })
-      // })
-
+      $(".error-message").slideDown(200, () => {       // calling my error-message asking it to slide down -- 200 is the speed
+        setTimeout(function () {                       // giving it another function "setTimeOut" which is a CB of the above line
+          $(".error-message").slideUp(200)             //giving it another JQuery ("$()") slideUp () eventhandler to slideup the "text error msg i gave it" 200 is the time it take to open
+        }, 1500)                                       // the amount of time i want my error msg to display for
+      })
 
     } else if (tweetLength === 0) {
-      alert("fill in ")
+      //alert("fill in ")
+      $(".please-fill-in").slideDown(200, () => {      // calling my ".please-fill-in" asking it to slide down -- 200 is the speed
+        setTimeout(function () {                       // giving it another function "setTimeOut" which is a CB of the above line
+          $(".please-fill-in").slideUp(200)            //giving it another JQuery $(".please-fill-in") slideUp () eventhandler to slideup the "text  msg i gave it" 200 is the time it take to open
+        }, 1500)                                       // the amount of time i want my error msg to display for
+      })
 
     } else {
       console.log($(this).serialize())
