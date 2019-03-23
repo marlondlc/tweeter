@@ -18,7 +18,8 @@ const request = (options, cb) => {
     })
 
     .fail(err => {
-      console.log(`Error: ${err}`)
+      console.log(`Error: `)
+      console.error(err)
     })
 
   // .always(() => {                                        // in this project there is no propose of the ".always"
@@ -40,13 +41,14 @@ function createTweetElement(tweet) {                          //this "f()" will 
   let textAndPostDate = $("<div>").addClass("textAndPostDate")
   let textPost = $("<p>").addClass("post-tweet").text(tweet.content.text)
   let footer = $("<footer>").addClass("time-stamp")
-  let timeStamp = $("<div>").text(moment(tweet.created_at).startOf().fromNow())                     //.text(you are  grabbing the data when it was created from server/routes/tweets "data"  using .from() will calculate from when -- linked in my index.html script!)
+  let timeStamp = $("<div>").text(moment(tweet.created_at).fromNow())                     //.text(you are  grabbing the data when it was created from server/routes/tweets "data"  using .from() will calculate from when -- linked in my index.html script!)
   //text(moment().startOf(tweet.created_at).fromNow())
+  // .text(moment(tweet.created_at).startOf('day').fromNow())
   let iconContainer = $("<div>")
   let retweet = $("<img>").addClass("bottomIcons")
   let flag = $("<img>").addClass("bottomIcons")
   let like = $("<img>").addClass("bottomIcons")
-  db.test.find()
+  // db.test.find()
 
   avatarDiv.append(image).append(userName)
   header.append(avatarDiv).append(userId)
@@ -139,17 +141,6 @@ function createComposeEventHandler() {                // naming:  verb followed 
 
 }
 
-// function maxLengthSlideUpDown() {
-
-//   $( ".error-message" ).click(function() {
-//     $( "#book" ).slideDown( "slow", function() {
-//       // Animation complete.
-//     });
-//   });
-
-// }
-
-
 //summary of whats going on in the "DOM"
 $(function () {                                       // this can be written like this "$(document).ready(){}""
   loadTweets()                                        //load existing data tweets without the new
@@ -159,8 +150,3 @@ $(function () {                                       // this can be written lik
 
 
 })
-
-
-
-//LOOK OVER THEN DELETE
-      // $(".error-message").slideUp(50) - use the CB riki suggested (settimeout - look it up)
