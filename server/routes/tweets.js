@@ -24,7 +24,7 @@ module.exports = function (DataHelpers) {
     }
 
     const user = req.body.user ? req.body.user : userHelper.generateRandomUser();
-    const tweet = {
+    const newTweet = {
       user: user,
       content: {
         text: req.body.text
@@ -32,7 +32,7 @@ module.exports = function (DataHelpers) {
       created_at: Date.now()
     };
 
-    DataHelpers.saveTweet(tweet, (err) => {
+    DataHelpers.saveTweet(newTweet, (err) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {

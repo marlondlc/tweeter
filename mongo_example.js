@@ -11,8 +11,13 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     throw err;
   }
 
-  function getTweets(callback) {
-    db.collection("tweets").find().toArray(callback);
-  }
+  db.collection("tweets").find().toArray((err, results) => {
+    if (err) throw err;
+
+    console.log("results array: ", results);
+
+    // This is the end...
+    db.close();               //is the "proper" thing to do when you're done with it
+  });
 
 });
