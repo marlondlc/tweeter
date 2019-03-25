@@ -21,4 +21,19 @@ This repository is the starter code for the project: Students will fork and clon
 - moment
 - mongodb
 
-# tweeter
+# Tweeter Photos
+
+!["screenshot of Login Page"](https://github.com/marlondlc/tinyAppProject/blob/master/doc/login-page.png)
+!["screenshot of Registration Page"](https://github.com/marlondlc/tinyAppProject/blob/master/doc/registeration-page.png)
+!["screenshot of URL Page"](https://github.com/marlondlc/tinyAppProject/blob/master/doc/uls-page.png)
+
+## Getting Started
+
+- Install all dependencies (using the 'NPM install' command).
+- Run the development web server using  the ' node express_server.js' command.
+
+## Ex. From Project root:
+
+ - $ npm install
+ - $ node express_server.js
+ - $ Then visit localhost:8080
