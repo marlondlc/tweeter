@@ -39,9 +39,9 @@ function createTweetElement(tweet) {                                            
   let footer = $("<footer>").addClass("time-stamp")
   let timeStamp = $("<div>").text(moment(tweet.created_at).fromNow())           //.text(you are  grabbing the data when it was created from server/routes/tweets "data"  using .from() will calculate from when -- linked in my index.html script!)
   let iconContainer = $("<div>")
-  let retweet = $("<img>").addClass("bottomIcons")
-  let flag = $("<img>").addClass("bottomIcons")
-  let like = $("<img>").addClass("bottomIcons")
+  let flag = $("<img>").addClass("bottomIcons").attr("src", "/images/flag.png")
+  let retweet = $("<img>").addClass("bottomIcons").attr("src", "/images/reload.png")
+  let like = $("<img>").addClass("bottomIcons").attr("src", "/images/like.png")
 
   avatarDiv.append(image).append(userName)
   header.append(avatarDiv).append(userId)
