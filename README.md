@@ -23,9 +23,9 @@ This repository is the starter code for the project: Students will fork and clon
 
 # Tweeter Photos
 
-!["screenshot of Login Page"](https://github.com/marlondlc/tinyAppProject/blob/master/doc/login-page.png)
-!["screenshot of Registration Page"](https://github.com/marlondlc/tinyAppProject/blob/master/doc/registeration-page.png)
-!["screenshot of URL Page"](https://github.com/marlondlc/tinyAppProject/blob/master/doc/uls-page.png)
+!["screenshot of with Compose Exposed Page"](https://github.com/marlondlc/tweeter/blob/master/public/images/with%20the%20compose.png)
+!["screenshot of hidden compose Page"](https://github.com/marlondlc/tweeter/blob/master/public/images/without%20the%20compose.png)
+
 
 ## Getting Started
 
