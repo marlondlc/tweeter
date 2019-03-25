@@ -5,6 +5,13 @@ margin: 1px 2px 5px 1px
 
 #tweet-container article:hover {
   opacity: 1.0;
+}
+#tweet-container article:hover .bottomIcons {
+  opacity: 1.0;
+  margin: 5px;
+  width:20px;
+  height:20px;
+  visibility: visible;
 
 }
 
@@ -21,7 +28,6 @@ margin: 1px 2px 5px 1px
   background-color: white;
   border: 1px solid grey;
   padding: 16px 0px 0px 0px;
-
 }
 
 .userHeader {
@@ -32,12 +38,17 @@ margin: 1px 2px 5px 1px
   margin: -19px -1px -19px -1px;
   background-color: #eee;
   border-radius: 1em 1em 0em 0em;
-
 }
+
 
 .bottomIcons {
-  margin: 10px;
+  margin: 5px;
+  width:20px;
+  height:20px;
+  visibility: hidden;
+
 }
+
 .img-user {
   display: flex;
   justify-content: end;
@@ -57,6 +68,7 @@ margin: 1px 2px 5px 1px
   display: flex;
   border-top: 1px solid grey;
   padding: 5px 10px 0px;
+  justify-content: space-between;
 }
 
 .tweet-logo{
@@ -81,7 +93,6 @@ margin: 1px 2px 5px 1px
   text-align: center;
   display: none;
   border-radius: 1em;
-
 }
 
 .please-fill-in {
@@ -91,37 +102,4 @@ margin: 1px 2px 5px 1px
   text-align: center;
   display: none;
   border-radius: 1em;
-
 }
-
-
-/*
-  .error-message-display {
-    display: inline-block;
-    background-color: red;
-    color: white;
-    font-weight: 500;
-    text-align: center;
-  }
-*/
-
-
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
